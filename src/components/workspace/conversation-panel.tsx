@@ -159,11 +159,12 @@ export function ConversationPanel({
     <section className="flex h-1/2 min-w-0 flex-1 flex-col lg:h-full">
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-6">
         <div className="mx-auto flex max-w-2xl flex-col gap-3">
-          {messages.map((m) => (
+          {messages.map((m, i) => (
             <ConversationMessageItem
               key={m.id}
               projectId={projectId}
               message={m}
+              isLast={i === messages.length - 1}
             />
           ))}
           {optimisticAnswer && <UserBubble>{optimisticAnswer}</UserBubble>}
