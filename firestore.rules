@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny. All Branchback reads/writes go through the
+    // firebase-admin SDK on the server (which bypasses these rules), so
+    // nothing legitimate hits this path. Defense-in-depth: any future
+    // direct client-SDK access is blocked until rules are explicitly opened.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+specVersion: v1
+serviceId: branchback
+location: us-central1
+schema:
+  source: ./schema
+  datasource:
+    postgresql:
+      database: branchback
+      cloudSql:
+        instanceId: branchback-dev
+connectorDirs:
+  - ./connector

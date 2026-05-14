@@ -1,0 +1,17 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "dataconnect": {
+    "source": "dataconnect"
+  },
+  "emulators": {
+    "auth": { "port": 18099 },
+    "firestore": { "port": 18580 },
+    "dataconnect": { "port": 18899 },
+    "hub": { "port": 14400 },
+    "logging": { "port": 14500 },
+    "ui": { "enabled": true, "port": 14000 },
+    "singleProjectMode": true
+  }
+}

@@ -1,0 +1,148 @@
+# Slice operations. Every op is auth-checked; row-level checks compare
+# auth.uid against the owning project's userId.
+
+mutation CreateProjectWithSeed(
+  $rawIdea: String!
+  $planningDepth: String!
+  $name: String!
+) @auth(level: USER) {
+  project_insert(data: {
+    userId_expr: "auth.uid"
+    name: $name
+    rawIdea: $rawIdea
+    planningDepth: $planningDepth
+  })
+}
+
+mutation InsertPlanningPhase(
+  $projectId: UUID!
+  $ordinal: Int!
+  $key: String!
+  $title: String!
+  $status: String!
+) @auth(level: USER) {
+  planningPhase_insert(data: {
+    projectId: $projectId
+    ordinal: $ordinal
+    key: $key
+    title: $title
+    status: $status
+  })
+}
+
+mutation AppendConversationMessage(
+  $projectId: UUID!
+  $role: String!
+  $kind: String!
+  $payload: String!
+  $turnIndex: Int!
+) @auth(level: USER) {
+  conversationMessage_insert(data: {
+    projectId: $projectId
+    role: $role
+    kind: $kind
+    payload: $payload
+    turnIndex: $turnIndex
+  })
+}
+
+mutation InsertDecisionNode(
+  $projectId: UUID!
+  $phaseKey: String!
+  $nodeType: String!
+  $title: String!
+  $rationale: String!
+  $confidence: Float!
+  $madeBy: String!
+  $alternatives: String!
+  $affectedAreas: String!
+  $sourceMessageId: UUID
+  $aiGenerationId: UUID
+) @auth(level: USER) {
+  decisionNode_insert(data: {
+    projectId: $projectId
+    phaseKey: $phaseKey
+    nodeType: $nodeType
+    title: $title
+    rationale: $rationale
+    confidence: $confidence
+    madeBy: $madeBy
+    alternatives: $alternatives
+    affectedAreas: $affectedAreas
+    sourceMessageId: $sourceMessageId
+    aiGenerationId: $aiGenerationId
+    status: "active"
+  })
+}
+
+mutation InsertProductStateSnapshot(
+  $projectId: UUID!
+  $payload: String!
+  $triggeredByDecisionId: UUID
+) @auth(level: USER) {
+  productStateSnapshot_insert(data: {
+    projectId: $projectId
+    payload: $payload
+    triggeredByDecisionId: $triggeredByDecisionId
+  })
+}
+
+mutation InsertAIGeneration(
+  $projectId: UUID!
+  $module: String!
+  $capabilityTier: String!
+  $routingPolicy: String!
+  $providerId: String!
+  $modelId: String!
+  $promptVersion: String!
+  $inputHash: String!
+  $outputHash: String!
+  $providerCallStatus: String!
+  $validatorStatus: String!
+  $userVisible: Boolean!
+  $committedToGraph: Boolean!
+  $latencyMs: Int!
+) @auth(level: USER) {
+  aIGeneration_insert(data: {
+    projectId: $projectId
+    module: $module
+    capabilityTier: $capabilityTier
+    routingPolicy: $routingPolicy
+    providerId: $providerId
+    modelId: $modelId
+    promptVersion: $promptVersion
+    inputHash: $inputHash
+    outputHash: $outputHash
+    providerCallStatus: $providerCallStatus
+    validatorStatus: $validatorStatus
+    userVisible: $userVisible
+    committedToGraph: $committedToGraph
+    latencyMs: $latencyMs
+  })
+}
+
+query GetProjectWorkspace($projectId: UUID!) @auth(level: USER) {
+  project(id: $projectId) {
+    id userId name rawIdea planningDepth createdAt updatedAt
+  }
+  planningPhases(where: { projectId: { eq: $projectId } }, orderBy: { ordinal: ASC }) {
+    id ordinal key title status
+  }
+  conversationMessages(where: { projectId: { eq: $projectId } }, orderBy: { turnIndex: ASC }) {
+    id role kind payload turnIndex createdAt
+  }
+  productStateSnapshots(
+    where: { projectId: { eq: $projectId } }
+    orderBy: { createdAt: DESC }
+    limit: 1
+  ) { id payload createdAt }
+  decisionNodes(where: { projectId: { eq: $projectId }, status: { eq: "active" } }) {
+    id title rationale confidence madeBy phaseKey alternatives affectedAreas createdAt
+  }
+}
+
+query GetReasoningTrail($projectId: UUID!) @auth(level: USER) {
+  decisionNodes(where: { projectId: { eq: $projectId }, status: { eq: "active" } }) {
+    id phaseKey title rationale confidence madeBy alternatives affectedAreas createdAt
+  }
+}

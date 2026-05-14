@@ -1,0 +1,88 @@
+# Branchback v1.1 — Data Connect schema (DOCUMENTED MIGRATION TARGET).
+#
+# STATUS: not in production use. The shipped backend is Firestore via
+# `firebase-admin/firestore` (see src/lib/db/firestore/repository.ts and the
+# Architecture Decision Update at the top of docs/PLAN.md). This file +
+# connector/operations.gql describe the relational schema that would back
+# Branchback if we ever migrate from Firestore to Cloud SQL — typically
+# triggered by genuine graph-shaped query needs (multi-hop lineage,
+# cross-user analytics) that hurt in a document store.
+#
+# This schema has NOT been round-tripped through `firebase dataconnect:compile`,
+# so treat it as a sketch. Verify before relying on it.
+#
+# `@auth(level: USER)` applies to all queries/mutations in connector/operations.gql.
+# Row-level checks are written there as `auth.uid == userId`.
+
+type Project @table {
+  id: UUID! @default(expr: "uuidV4()")
+  userId: String!
+  name: String!
+  rawIdea: String!
+  planningDepth: String!            # 'fast' | 'deep' | 'handoff'
+  createdAt: Timestamp! @default(expr: "request.time")
+  updatedAt: Timestamp! @default(expr: "request.time")
+}
+
+type PlanningPhase @table(key: ["project", "ordinal"]) {
+  id: UUID! @default(expr: "uuidV4()")
+  project: Project!
+  ordinal: Int!                      # 1..9
+  key: String!                       # 'idea_intake' | ... | 'final_brief'
+  title: String!
+  status: String!                    # 'pending' | 'active' | 'complete'
+}
+
+type ConversationMessage @table {
+  id: UUID! @default(expr: "uuidV4()")
+  project: Project!
+  role: String!                      # 'user' | 'assistant' | 'system'
+  kind: String!                      # 'raw_idea' | 'question' | 'answer' | 'recommendation' | 'acknowledgement'
+  payload: String!                   # JSON blob; shape varies by kind
+  turnIndex: Int!
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type DecisionNode @table {
+  id: UUID! @default(expr: "uuidV4()")
+  project: Project!
+  phaseKey: String!
+  nodeType: String!                  # e.g. 'persona_choice'
+  title: String!
+  rationale: String!
+  confidence: Float!
+  madeBy: String!                    # 'user_direct' | 'agent_recommendation_confirmed_by_user' | 'agent_inferred'
+  alternatives: String!              # JSON array of {title, rationale, confidence}
+  affectedAreas: String!             # JSON array of strings
+  sourceMessageId: UUID
+  aiGenerationId: UUID
+  status: String!                    # always 'active' — pivots create siblings rather than superseding the original
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type ProductStateSnapshot @table {
+  id: UUID! @default(expr: "uuidV4()")
+  project: Project!
+  payload: String!                   # JSON: { whoItsFor, problem, successLooksLike, solution, mvpFocus, openQuestion }
+  triggeredByDecisionId: UUID
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type AIGeneration @table {
+  id: UUID! @default(expr: "uuidV4()")
+  project: Project!
+  module: String!                    # 'idea_interpreter' | 'question_strategist' | 'recommendation' | ...
+  capabilityTier: String!
+  routingPolicy: String!             # 'mock' | 'ollama_local' | 'openai_compatible'
+  providerId: String!                # 'mock' | 'ollama' | 'openai'
+  modelId: String!
+  promptVersion: String!
+  inputHash: String!
+  outputHash: String!
+  providerCallStatus: String!
+  validatorStatus: String!
+  userVisible: Boolean!
+  committedToGraph: Boolean!
+  latencyMs: Int!
+  createdAt: Timestamp! @default(expr: "request.time")
+}

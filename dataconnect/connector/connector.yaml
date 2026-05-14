@@ -1,0 +1,7 @@
+connectorId: default
+authMode: PUBLIC
+generate:
+  javascriptSdk:
+    outputDir: ../../dataconnect-generated/js/default
+    package: "@dataconnect/branchback"
+    packageJsonDir: ../../
