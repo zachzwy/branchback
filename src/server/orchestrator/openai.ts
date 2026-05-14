@@ -93,7 +93,13 @@ async function callOpenAI(
   const data = (await res.json()) as OpenAIChatResponse;
   if (data.error?.message) throw new Error(`llm_error: ${data.error.message}`);
   const content = data.choices?.[0]?.message?.content ?? "";
-  if (!content.trim()) throw new Error("llm_empty_response");
+  // Some OpenAI-compatible providers (notably DeepSeek's v4-flash) occasionally
+  // emit whitespace-only content on the first try in JSON mode and report
+  // finish_reason=stop. Returning the empty content lets the orchestrator's
+  // tryParse fail and trigger the repair pass with an explicit "produce valid
+  // JSON" instruction, which almost always succeeds — much better UX than
+  // dropping the user into the "(Model unavailable)" fallback.
+  if (!content.trim()) return { content: "" };
   return { content };
 }
 
