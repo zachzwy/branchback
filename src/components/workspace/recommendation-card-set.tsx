@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 import { toastResponseError } from "@/lib/client-errors";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import type { RecommendationPayload } from "@/lib/db/types";
 import { ThinkingBubble } from "./thinking-bubble";
@@ -15,14 +15,6 @@ interface Props {
   payload: RecommendationPayload;
   alreadyConfirmed: boolean;
 }
-
-const SECONDARY_ACTIONS: { id: string; label: string; comingSoon: string }[] = [
-  {
-    id: "not_sure",
-    label: "I'm not sure yet",
-    comingSoon: "Open-question capture ships in the next slice.",
-  },
-];
 
 export function RecommendationCardSet({
   projectId,
@@ -35,16 +27,24 @@ export function RecommendationCardSet({
   const [chosen, setChosen] = useState<string | null>(
     payload.confirmedChoiceId ?? null,
   );
+  const [askingOpen, setAskingOpen] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [clarifyPending, setClarifyPending] = useState(false);
   const pendingRef = useRef<HTMLDivElement>(null);
+  const questionRef = useRef<HTMLTextAreaElement>(null);
   const disabled = alreadyConfirmed || pending || chosen !== null;
 
   useEffect(() => {
-    if (!pending) return;
+    if (!pending && !clarifyPending) return;
     pendingRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "end",
     });
-  }, [pending]);
+  }, [pending, clarifyPending]);
+
+  useEffect(() => {
+    if (askingOpen) questionRef.current?.focus();
+  }, [askingOpen]);
 
   const confirm = (choiceId: string) => {
     setChosen(choiceId);
@@ -61,6 +61,39 @@ export function RecommendationCardSet({
       }
       router.refresh();
     });
+  };
+
+  const submitQuestion = async () => {
+    const text = question.trim();
+    if (!text || clarifyPending) return;
+    setClarifyPending(true);
+    try {
+      const res = await fetch(`/api/projects/${projectId}/clarify`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messageId, question: text }),
+      });
+      if (!res.ok) {
+        await toastResponseError(res, "Could not ask");
+        return;
+      }
+      setQuestion("");
+      setAskingOpen(false);
+      router.refresh();
+    } finally {
+      setClarifyPending(false);
+    }
+  };
+
+  const onQuestionKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      void submitQuestion();
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      setAskingOpen(false);
+      setQuestion("");
+    }
   };
 
   const goRecommended = () => confirm(payload.recommended.id);
@@ -100,20 +133,57 @@ export function RecommendationCardSet({
         >
           Choose {payload.alternative.title.toLowerCase()}
         </Button>
-        {SECONDARY_ACTIONS.map((a) => (
-          <Button
-            key={a.id}
-            size="sm"
-            variant="ghost"
-            disabled={disabled}
-            onClick={() => toast(a.comingSoon)}
-            className="rounded-full text-muted-foreground"
-          >
-            {a.label}
-          </Button>
-        ))}
+        <Button
+          size="sm"
+          variant="ghost"
+          disabled={disabled || askingOpen}
+          onClick={() => setAskingOpen(true)}
+          className="rounded-full text-muted-foreground"
+        >
+          I&apos;m not sure yet
+        </Button>
       </div>
-      {pending && (
+      {askingOpen && !disabled && (
+        <div className="flex flex-col gap-2 rounded-xl border border-border/60 bg-muted/40 p-3">
+          <div className="text-[12px] text-muted-foreground">
+            Ask anything about these options — comparison, tradeoffs, edge
+            cases. You can still pick one above afterward.
+          </div>
+          <Textarea
+            ref={questionRef}
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            onKeyDown={onQuestionKeyDown}
+            placeholder="e.g. How do these two compare on time-to-launch?"
+            rows={2}
+            className="min-h-[60px] resize-none bg-background"
+            disabled={clarifyPending}
+          />
+          <div className="flex items-center justify-end gap-2">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => {
+                setAskingOpen(false);
+                setQuestion("");
+              }}
+              disabled={clarifyPending}
+              className="rounded-full"
+            >
+              Cancel
+            </Button>
+            <Button
+              size="sm"
+              onClick={() => void submitQuestion()}
+              disabled={!question.trim() || clarifyPending}
+              className="rounded-full"
+            >
+              {clarifyPending ? "Asking…" : "Ask"}
+            </Button>
+          </div>
+        </div>
+      )}
+      {(pending || clarifyPending) && (
         <div ref={pendingRef}>
           <ThinkingBubble />
         </div>

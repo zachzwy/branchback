@@ -51,6 +51,17 @@ export function ConversationMessageItem({ projectId, message }: Props) {
         />
       );
 
+    case "clarification_question":
+      return <UserBubble>{message.payload.data.text}</UserBubble>;
+
+    case "clarification_answer":
+      return (
+        <>
+          <AgentLabel />
+          <AssistantBubble>{message.payload.data.text}</AssistantBubble>
+        </>
+      );
+
     default:
       return null;
   }

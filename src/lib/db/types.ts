@@ -56,7 +56,9 @@ export type ConversationMessageKind =
   | "question"
   | "answer"
   | "recommendation"
-  | "acknowledgement";
+  | "acknowledgement"
+  | "clarification_question"
+  | "clarification_answer";
 
 export interface QuestionPayload {
   text: string;
@@ -93,12 +95,26 @@ export interface AnswerPayload {
   text: string;
 }
 
+// Open question the user asks about a pending recommendation when clicking
+// "I'm not sure yet" — never expects a structured action back, just prose.
+export interface ClarificationQuestionPayload {
+  text: string;
+  recommendationMessageId: string;
+}
+
+export interface ClarificationAnswerPayload {
+  text: string;
+  recommendationMessageId: string;
+}
+
 export type ConversationPayload =
   | { kind: "raw_idea"; data: RawIdeaPayload }
   | { kind: "question"; data: QuestionPayload }
   | { kind: "answer"; data: AnswerPayload }
   | { kind: "recommendation"; data: RecommendationPayload }
-  | { kind: "acknowledgement"; data: AcknowledgementPayload };
+  | { kind: "acknowledgement"; data: AcknowledgementPayload }
+  | { kind: "clarification_question"; data: ClarificationQuestionPayload }
+  | { kind: "clarification_answer"; data: ClarificationAnswerPayload };
 
 export interface ConversationMessage {
   id: string;

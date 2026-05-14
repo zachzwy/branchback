@@ -153,6 +153,10 @@ function payloadToTranscriptLine(p: ConversationPayload): {
         role: "assistant",
         content: `[Decision noted] ${p.data.text}.`,
       };
+    case "clarification_question":
+      return { role: "user", content: `[Clarifying question] ${p.data.text}` };
+    case "clarification_answer":
+      return { role: "assistant", content: `[Clarification] ${p.data.text}` };
     default:
       return null;
   }
