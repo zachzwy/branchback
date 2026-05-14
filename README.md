@@ -159,6 +159,7 @@ Common provider configurations (drop any of these into `.env.local`):
 | Provider | `LLM_BASE_URL` | Example `LLM_MODEL` |
 |---|---|---|
 | OpenAI | `https://api.openai.com/v1` | `gpt-4o-mini` |
+| Anthropic | `https://api.anthropic.com/v1/` | `claude-sonnet-4-5` |
 | DeepSeek | `https://api.deepseek.com` | `deepseek-chat` |
 | Groq | `https://api.groq.com/openai/v1` | `llama-3.1-70b-versatile` |
 | Together | `https://api.together.xyz/v1` | `meta-llama/Llama-3.3-70B-Instruct-Turbo` |
@@ -168,7 +169,9 @@ Common provider configurations (drop any of these into `.env.local`):
 | vLLM (self-host) | `http://localhost:8000/v1` | whatever you served |
 | LM Studio | `http://localhost:1234/v1` | whatever you loaded |
 
-The adapter requests `response_format: { type: "json_object" }`. Most OpenAI-compatible providers honor it; for ones that don't, the orchestrator's built-in repair pass and Zod schema validation catch malformed JSON and either retry once or fall back gracefully — so providers without strict JSON mode still work in practice, just with a slightly higher fallback rate.
+The adapter requests `response_format: { type: "json_object" }`. Most OpenAI-compatible providers honor it; for ones that don't (Anthropic's compatibility shim, some self-hosted runtimes), the orchestrator's built-in repair pass and Zod schema validation catch malformed JSON and either retry once or fall back gracefully — so providers without strict JSON mode still work in practice, just with a slightly higher fallback rate.
+
+Note on Anthropic: the URL above is Anthropic's [OpenAI-compatibility endpoint](https://docs.anthropic.com/en/api/openai-sdk), which accepts the OpenAI Chat Completions shape with `Authorization: Bearer <anthropic-api-key>`. It's a translation shim rather than the native Anthropic API, so a few advanced features (strict JSON mode, fine-grained tool-use control) aren't supported — for this app's structured-extraction use case it works fine.
 
 ## Letting Ollama write the brief synthesis
 
