@@ -12,7 +12,29 @@ Built for people moving from "I have an idea" to "I know what to build next."
 
 The app features a versioned product decision graph, allowing users to trace and revisit decisions. This app is conversational based: the founder and a strong agent work together to clarify the final product stance and generate handoff docs for architecture, implementation, marketing, legal, and other downstream agents.
 
-This repo currently ships the **vertical slice** described in `docs/PLAN.md` — Idea Intake → orchestrator-driven 9-phase planning conversation → recommendation + decision capture → Product Story compile → branching Reasoning Trail with revisit/switch/re-attach → Product Founder Brief generation. Architecture and naming follow `docs/PLAN.md`; UI follows `docs/Branchback v1.1 — Hi-Fi Print.pdf`.
+This repo ships a **vertical slice** of the full vision: Idea Intake → orchestrator-driven 9-phase planning conversation → recommendation + decision capture → Product Story compile → branching Reasoning Trail with revisit/switch/re-attach → Product Founder Brief generation.
+
+## Screenshots
+
+The structured planning conversation — phase rail on the left, recommendation cards in the middle, product story compiled on the right:
+
+![Conversation workspace](public/marketing/crop-conversation.png)
+
+Every confirmed choice and every alternative becomes a node in a decision graph. Branches stay alive when you pivot — you can switch back at any time, and each final brief is anchored to a leaf:
+
+![Decision graph](public/marketing/crop-decision-graph.png)
+
+Revisit any decision to start a new branch from that point. The modal shows which downstream decisions would be affected and offers the alternatives the orchestrator already recorded:
+
+<img src="public/marketing/crop-branch-modal.png" alt="Revisit decision modal" width="360">
+
+The Product Founder Brief renders the project as a hero (concept name + tagline) with sections backed by confirmed decisions — each section links back to its source:
+
+![Product Founder Brief](public/marketing/crop-brief.png)
+
+At the bottom of the brief: handoff prompts for downstream agents (design, technical architecture, implementation, QA, marketing, financial, legal, customer success). One click copies the brief + the relevant agent prompt to your clipboard:
+
+![Handoff prompts](public/marketing/crop-handoff.png)
 
 ## Stack
 
@@ -256,9 +278,6 @@ dataconnect/
   connector/operations.gql                           # typed mutations + queries
   dataconnect.yaml + connector/connector.yaml
 firebase.json
-docs/
-  PLAN.md
-  Branchback v1.1 — Hi-Fi Print.pdf
 ```
 
 ## Architecture notes

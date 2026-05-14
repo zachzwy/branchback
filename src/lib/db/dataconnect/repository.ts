@@ -33,9 +33,8 @@ import type {
  * STATUS: scaffold only — every method throws until it is wired up against
  * the actual generated client / verified operations.gql.
  *
- * **The shipped backend is Firestore** (see `src/lib/db/firestore/repository.ts`
- * and the Architecture Decision Update at the top of `docs/PLAN.md`). This
- * skeleton remains as the documented Postgres-future migration target —
+ * **The shipped backend is Firestore** (see `src/lib/db/firestore/repository.ts`).
+ * This skeleton remains as the documented Postgres-future migration target —
  * typically triggered by genuine graph-shaped query needs (multi-hop lineage,
  * cross-user analytics) that hurt in a document store. The picker
  * (`src/lib/db/index.ts`) honors `REPOSITORY_MODE=dataconnect` so the typecheck

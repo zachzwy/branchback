@@ -1,10 +1,9 @@
 # Branchback v1.1 — Data Connect schema (DOCUMENTED MIGRATION TARGET).
 #
 # STATUS: not in production use. The shipped backend is Firestore via
-# `firebase-admin/firestore` (see src/lib/db/firestore/repository.ts and the
-# Architecture Decision Update at the top of docs/PLAN.md). This file +
-# connector/operations.gql describe the relational schema that would back
-# Branchback if we ever migrate from Firestore to Cloud SQL — typically
+# `firebase-admin/firestore` (see src/lib/db/firestore/repository.ts). This
+# file + connector/operations.gql describe the relational schema that would
+# back Branchback if we ever migrate from Firestore to Cloud SQL — typically
 # triggered by genuine graph-shaped query needs (multi-hop lineage,
 # cross-user analytics) that hurt in a document store.
 #
