@@ -43,7 +43,7 @@ export default async function HomePage() {
         </div>
       </main>
 
-      <footer className="whitespace-nowrap px-8 py-6 text-center text-[13.2px] text-muted-foreground">
+      <footer className="whitespace-normal px-8 py-6 text-center text-[13.2px] text-muted-foreground md:whitespace-nowrap">
         Every decision we make together will be quietly tracked, and you can revisit any of them at any time.
       </footer>
     </div>

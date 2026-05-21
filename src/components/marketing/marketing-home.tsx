@@ -354,7 +354,7 @@ export function MarketingHome() {
               <span className="text-white/24">Coming soon</span>
             </a>
           </div>
-          <span className="max-w-none whitespace-nowrap text-xs leading-5 text-white/28 md:text-right">
+          <span className="max-w-xl whitespace-normal text-xs leading-5 text-white/28 md:text-right lg:max-w-none lg:whitespace-nowrap">
             Every decision we make together will be quietly tracked, and you can revisit any of them at any time.
           </span>
           <div className="flex items-center gap-4 text-xs text-white/32">
