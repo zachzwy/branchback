@@ -14,12 +14,12 @@ export function PhaseSidebar({ phases }: { phases: PlanningPhase[] }) {
   return (
     <div className="flex shrink-0 flex-col border-border/60 lg:w-44 lg:border-r">
       {/* Desktop label */}
-      <div className="hidden px-4 pt-6 pb-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground lg:block">
+      <div className="hidden px-4 pt-6 pb-3 text-[12px] font-semibold uppercase tracking-wider text-muted-foreground lg:block">
         Phases
       </div>
 
       <div className="w-full overflow-x-auto border-b border-border/40 scrollbar-none lg:border-b-0">
-        <ol className="flex min-w-max items-center gap-1.5 px-6 py-4 text-[13px] lg:min-w-0 lg:flex-col lg:items-stretch lg:gap-1.5 lg:px-4 lg:py-0 lg:pb-6">
+        <ol className="flex min-w-max items-center gap-1.5 px-6 py-4 text-[15.6px] lg:min-w-0 lg:flex-col lg:items-stretch lg:gap-1.5 lg:px-4 lg:py-0 lg:pb-6">
           {phases.map((p) => (
             <li
               key={p.id}

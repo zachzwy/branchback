@@ -345,7 +345,7 @@ export function DecisionGraph({
 
 function Legend() {
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-border/60 bg-background/80 px-4 py-2 text-[10px] text-muted-foreground">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-border/60 bg-background/80 px-4 py-2 text-[12px] text-muted-foreground">
       <LegendChip color="bg-blue-500" label="You decided" />
       <LegendChip color="bg-amber-500" label="Agent recommended" />
       <LegendChip

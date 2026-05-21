@@ -101,7 +101,7 @@ export function RecommendationCardSet({
 
   return (
     <div className="flex max-w-[90%] flex-col gap-3 self-start">
-      <div className="text-[14px] leading-relaxed">{payload.prompt}</div>
+      <div className="text-[16.8px] leading-relaxed">{payload.prompt}</div>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         <OptionCard
           option={payload.recommended}
@@ -145,7 +145,7 @@ export function RecommendationCardSet({
       </div>
       {askingOpen && !disabled && (
         <div className="flex flex-col gap-2 rounded-xl border border-border/60 bg-muted/40 p-3">
-          <div className="text-[12px] text-muted-foreground">
+          <div className="text-[14.4px] text-muted-foreground">
             Ask anything about these options — comparison, tradeoffs, edge
             cases. You can still pick one above afterward.
           </div>
@@ -215,14 +215,14 @@ function OptionCard({
       )}
     >
       {recommended && (
-        <div className="text-[10px] font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300">
+        <div className="text-[12px] font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-300">
           ✶ Recommended
         </div>
       )}
-      <div className="text-[14px] font-semibold leading-tight">
+      <div className="text-[16.8px] font-semibold leading-tight">
         {option.title}
       </div>
-      <div className="text-[13px] leading-snug text-muted-foreground">
+      <div className="text-[15.6px] leading-snug text-muted-foreground">
         {option.rationale}
       </div>
     </div>

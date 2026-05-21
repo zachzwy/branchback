@@ -123,7 +123,7 @@ export function RevisitModal({
           </DialogDescription>
         </DialogHeader>
 
-        <blockquote className="rounded-md border-l-2 border-foreground/40 bg-muted/40 px-4 py-3 text-[13px] italic leading-snug text-muted-foreground">
+        <blockquote className="rounded-md border-l-2 border-foreground/40 bg-muted/40 px-4 py-3 text-[15.6px] italic leading-snug text-muted-foreground">
           &ldquo;{decision.rationale}&rdquo;
         </blockquote>
 
@@ -194,19 +194,19 @@ function ImpactPanel({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+      <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
         If we change this, it affects
       </div>
       <div className="flex flex-wrap gap-1.5">
         {decision.affectedAreas.length === 0 ? (
-          <span className="text-[12px] italic text-muted-foreground">
+          <span className="text-[14.4px] italic text-muted-foreground">
             No downstream impact recorded.
           </span>
         ) : (
           decision.affectedAreas.map((a) => (
             <span
               key={a}
-              className="rounded-full border border-red-300/70 bg-red-50 px-2 py-0.5 text-[11px] text-red-800 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-200"
+              className="rounded-full border border-red-300/70 bg-red-50 px-2 py-0.5 text-[13.2px] text-red-800 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-200"
             >
               ⚠ {a}
             </span>
@@ -215,7 +215,7 @@ function ImpactPanel({
         {unaffected.map((d) => (
           <span
             key={d.id}
-            className="rounded-full border border-emerald-300/70 bg-emerald-50 px-2 py-0.5 text-[11px] text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-200"
+            className="rounded-full border border-emerald-300/70 bg-emerald-50 px-2 py-0.5 text-[13.2px] text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-200"
             title={`From ${PHASE_TITLES[d.phaseKey]}`}
           >
             ✓ {d.title}
@@ -249,10 +249,10 @@ function ChoosePanel({
             "flex flex-col items-start gap-1 rounded-md border border-blue-300/70 bg-blue-50/60 p-3 text-left transition hover:bg-blue-50 dark:border-blue-900/60 dark:bg-blue-950/30 dark:hover:bg-blue-950/50",
           )}
         >
-          <div className="text-[13px] font-semibold text-blue-900 dark:text-blue-100">
+          <div className="text-[15.6px] font-semibold text-blue-900 dark:text-blue-100">
             Try a different direction
           </div>
-          <div className="text-[11px] leading-snug text-blue-900/80 dark:text-blue-200/80">
+          <div className="text-[13.2px] leading-snug text-blue-900/80 dark:text-blue-200/80">
             {isOffPath
               ? "Starts a new branch from this point — separate from the one you're currently on. Both branches stay visible. To resume the original branch instead, use “Switch to this branch.”"
               : "Starts a new branch from this point. The original choice and everything downstream of it stay intact on their own branch — you can come back and pick them up any time."}
@@ -262,7 +262,7 @@ function ChoosePanel({
 
       {decision.alternatives.length > 0 && (
         <div className="flex flex-col gap-2 rounded-md border border-dashed border-border/60 bg-muted/20 p-3">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
             Or pick from the alternatives we recorded
           </div>
           <div className="flex flex-col gap-1.5">
@@ -271,7 +271,7 @@ function ChoosePanel({
                 key={alt.title}
                 type="button"
                 onClick={() => onPickAlternative(alt)}
-                className="flex flex-col items-start gap-0.5 rounded-md border border-border/60 bg-background p-2 text-left text-[12px] leading-snug transition hover:border-foreground/40"
+                className="flex flex-col items-start gap-0.5 rounded-md border border-border/60 bg-background p-2 text-left text-[14.4px] leading-snug transition hover:border-foreground/40"
               >
                 <span className="font-medium">{alt.title}</span>
                 <span className="text-muted-foreground">{alt.rationale}</span>
@@ -320,7 +320,7 @@ function ComposePanel({
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-col gap-1.5">
-        <label className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <label className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
           New direction
         </label>
         <Input
@@ -331,7 +331,7 @@ function ComposePanel({
         />
       </div>
       <div className="flex flex-col gap-1.5">
-        <label className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <label className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
           Why this instead
         </label>
         <Textarea
@@ -342,7 +342,7 @@ function ComposePanel({
         />
       </div>
       <div className="flex items-center gap-3">
-        <label className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <label className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
           Confidence
         </label>
         <input

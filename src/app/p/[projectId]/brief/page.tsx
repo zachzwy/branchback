@@ -130,7 +130,7 @@ export default async function BriefPage({ params, searchParams }: PageProps) {
           >
             {brief.conceptName}
           </Link>
-          <Badge variant="secondary" className="rounded-full text-[10px] sm:text-xs">
+          <Badge variant="secondary" className="rounded-full text-[12px] sm:text-xs">
             v{versionNumber}
             {isLatest ? " · latest" : ""}
           </Badge>
@@ -160,7 +160,7 @@ export default async function BriefPage({ params, searchParams }: PageProps) {
         <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-8">
           <section className="mb-6 flex flex-col gap-4 rounded-2xl border border-border/60 bg-foreground px-8 py-10 text-background">
             <div className="flex flex-wrap items-start justify-between gap-4">
-              <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-background/70">
+              <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-background/70">
                 <BookOpen className="size-3.5" />
                 Product Founder Brief — v{versionNumber}
                 {!isLatest && " (historical)"}
@@ -173,7 +173,7 @@ export default async function BriefPage({ params, searchParams }: PageProps) {
               <h1 className="text-4xl font-semibold tracking-tight">
                 {brief.conceptName}
               </h1>
-              <div className="flex flex-col items-end text-[11px] text-background/70">
+              <div className="flex flex-col items-end text-[13.2px] text-background/70">
                 <span>
                   {brief.decisionCount}{" "}
                   {brief.decisionCount === 1 ? "decision" : "decisions"} ·{" "}
@@ -197,7 +197,7 @@ export default async function BriefPage({ params, searchParams }: PageProps) {
               {brief.tagline}
             </p>
             <div className="max-w-3xl rounded-lg border border-background/15 bg-background/10 p-4">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-background/60">
+              <div className="text-[12px] font-semibold uppercase tracking-[0.2em] text-background/60">
                 Elevator pitch
               </div>
               <p className="mt-2 text-sm leading-relaxed text-background/85">
@@ -218,12 +218,12 @@ export default async function BriefPage({ params, searchParams }: PageProps) {
                 key={s.id}
                 className="flex flex-col gap-2 rounded-xl border border-border/60 bg-background p-5"
               >
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
                   {s.title}
                 </div>
                 <div
                   className={cn(
-                    "text-[14px] leading-relaxed",
+                    "text-[16.8px] leading-relaxed",
                     s.isPlaceholder
                       ? "italic text-muted-foreground"
                       : "text-foreground",
@@ -232,7 +232,7 @@ export default async function BriefPage({ params, searchParams }: PageProps) {
                   {s.body}
                 </div>
                 {s.bullets.length > 0 && (
-                  <ul className="mt-1 flex flex-col gap-1.5 text-[13px] text-muted-foreground">
+                  <ul className="mt-1 flex flex-col gap-1.5 text-[15.6px] text-muted-foreground">
                     {s.bullets.map((b, i) => (
                       <li key={`${s.id}-${i}`} className="flex gap-2">
                         <span className="text-muted-foreground/60">•</span>
@@ -242,7 +242,7 @@ export default async function BriefPage({ params, searchParams }: PageProps) {
                   </ul>
                 )}
                 {s.sourceDecisionIds.length > 0 && (
-                  <div className="mt-1 flex flex-wrap items-center gap-1.5 text-[11px]">
+                  <div className="mt-1 flex flex-wrap items-center gap-1.5 text-[13.2px]">
                     {s.sourceDecisionIds.map((id) => (
                       <Link
                         key={id}
@@ -277,7 +277,7 @@ export default async function BriefPage({ params, searchParams }: PageProps) {
               )}
             </div>
             {brief.openQuestions.length > 0 && (
-              <ul className="flex flex-col gap-2 text-[13px]">
+              <ul className="flex flex-col gap-2 text-[15.6px]">
                 {brief.openQuestions.map((q, i) => (
                   <li
                     key={`${q.phaseKey}-${i}`}
@@ -285,7 +285,7 @@ export default async function BriefPage({ params, searchParams }: PageProps) {
                   >
                     <Badge
                       variant="outline"
-                      className="rounded-full border-amber-300 text-[10px] text-amber-800 dark:border-amber-900/60 dark:text-amber-200"
+                      className="rounded-full border-amber-300 text-[12px] text-amber-800 dark:border-amber-900/60 dark:text-amber-200"
                     >
                       {q.phaseTitle}
                     </Badge>

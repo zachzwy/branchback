@@ -22,7 +22,7 @@ export function BriefVersionList({
 
   return (
     <aside className="flex w-full flex-col gap-2 border-r border-border/60 bg-background px-4 py-5 lg:w-72">
-      <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+      <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
         Brief versions
       </div>
       <div className="flex flex-col gap-1.5">
@@ -46,21 +46,21 @@ export function BriefVersionList({
               )}
             >
               <div className="flex items-center justify-between gap-2">
-                <span className="text-[12px] font-semibold tracking-tight">
+                <span className="text-[14.4px] font-semibold tracking-tight">
                   Brief v{version}
                 </span>
                 {version === briefs.length && (
-                  <span className="rounded-full bg-foreground/10 px-1.5 py-px text-[9px] font-medium uppercase tracking-wider text-muted-foreground">
+                  <span className="rounded-full bg-foreground/10 px-1.5 py-px text-[10.8px] font-medium uppercase tracking-wider text-muted-foreground">
                     latest
                   </span>
                 )}
               </div>
-              <span className="text-[10px] text-muted-foreground">
+              <span className="text-[12px] text-muted-foreground">
                 {captured}
               </span>
               <span
                 className={cn(
-                  "truncate text-[11px]",
+                  "truncate text-[13.2px]",
                   trigger ? "text-foreground/80" : "text-muted-foreground/70",
                 )}
                 title={trigger?.title ?? "No anchor decision"}

@@ -28,7 +28,7 @@ export function ThinkingBubble({ hint }: Props) {
         ))}
       </div>
       {hint && (
-        <span className="self-start pl-2 text-[11px] text-muted-foreground/70">
+        <span className="self-start pl-2 text-[13.2px] text-muted-foreground/70">
           {hint}
         </span>
       )}

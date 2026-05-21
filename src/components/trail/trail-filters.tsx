@@ -37,7 +37,7 @@ export function TrailFilters({ active }: { active: string }) {
             type="button"
             onClick={() => setFilter(f.id)}
             className={cn(
-              "flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] transition",
+              "flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[13.2px] transition",
               selected
                 ? "border-foreground bg-foreground text-background"
                 : "border-border/60 text-muted-foreground hover:border-foreground/40",

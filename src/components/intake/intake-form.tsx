@@ -54,7 +54,7 @@ export function IntakeForm() {
           onChange={(e) => setText(e.target.value)}
           placeholder='"An app that helps people actually finish the online courses they buy…"'
           rows={4}
-          className="min-h-[140px] resize-none border-0 bg-transparent px-6 pt-5 text-[15px] leading-relaxed shadow-none focus-visible:ring-0"
+          className="min-h-[140px] resize-none border-0 bg-transparent px-6 pt-5 text-[18px] leading-relaxed shadow-none focus-visible:ring-0"
         />
         <div className="flex items-center justify-between border-t border-border/60 px-6 py-3">
           <div className="text-xs text-muted-foreground">
@@ -72,7 +72,7 @@ export function IntakeForm() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
           How deep do you want to go?
         </div>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -100,17 +100,17 @@ export function IntakeForm() {
                 <div className="flex flex-col">
                   <div
                     className={cn(
-                      "text-[14px] font-semibold leading-tight",
+                      "text-[16.8px] font-semibold leading-tight",
                       selected && "text-blue-900 dark:text-blue-200",
                     )}
                   >
                     {d.label}
                   </div>
-                  <div className="text-[11px] text-muted-foreground">
+                  <div className="text-[13.2px] text-muted-foreground">
                     {d.duration}
                   </div>
                 </div>
-                <div className="text-[12px] leading-snug text-muted-foreground">
+                <div className="text-[14.4px] leading-snug text-muted-foreground">
                   {d.description}
                 </div>
               </button>

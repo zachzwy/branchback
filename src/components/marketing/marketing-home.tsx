@@ -140,7 +140,7 @@ export function MarketingHome() {
 
         <section className="border-t border-white/[0.07] px-5 py-12 md:px-10">
           <div className="mx-auto max-w-6xl">
-            <p className="mb-5 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-white/32">
+            <p className="mb-5 text-center text-[13.2px] font-semibold uppercase tracking-[0.18em] text-white/32">
               A structured path from rough idea to founder brief
             </p>
             <div className="flex overflow-hidden rounded-xl border border-white/[0.08] max-lg:overflow-x-auto">
@@ -166,7 +166,7 @@ export function MarketingHome() {
         <section className="border-t border-white/[0.07] px-5 py-24 md:px-10">
           <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[0.9fr_1.25fr]">
             <div>
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/32">
+              <p className="mb-4 text-[13.2px] font-semibold uppercase tracking-[0.18em] text-white/32">
                 The Conversation
               </p>
               <h2 className="text-3xl font-semibold leading-tight md:text-5xl">
@@ -195,7 +195,7 @@ export function MarketingHome() {
         <section className="border-t border-white/[0.07] px-5 py-24 md:px-10">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-xl">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/32">
+              <p className="mb-4 text-[13.2px] font-semibold uppercase tracking-[0.18em] text-white/32">
                 The Decision Graph
               </p>
               <h2 className="text-3xl font-semibold leading-tight md:text-5xl">
@@ -231,7 +231,7 @@ export function MarketingHome() {
               delayMs={80}
             />
             <div>
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/32">
+              <p className="mb-4 text-[13.2px] font-semibold uppercase tracking-[0.18em] text-white/32">
                 Branch & Pivot
               </p>
               <h2 className="text-3xl font-semibold leading-tight md:text-5xl">
@@ -254,7 +254,7 @@ export function MarketingHome() {
         <section className="border-t border-white/[0.07] px-5 py-24 md:px-10">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-xl">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/32">
+              <p className="mb-4 text-[13.2px] font-semibold uppercase tracking-[0.18em] text-white/32">
                 The Brief
               </p>
               <h2 className="text-3xl font-semibold leading-tight md:text-5xl">
@@ -277,7 +277,7 @@ export function MarketingHome() {
                 </div>
               </RevealOnView>
               <RevealOnView delayMs={180} className="lg:h-[580px]">
-                <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/32">
+                <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.28em] text-white/32">
                   Handoff prompts for downstream agents
                 </p>
                 <div className="flex h-[calc(100%-2rem)] flex-col justify-between gap-2">
@@ -287,14 +287,14 @@ export function MarketingHome() {
                       className="flex items-center justify-between gap-3 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3.5 py-2.5"
                     >
                       <div className="min-w-0">
-                        <div className="text-[13px] font-semibold text-white">
+                        <div className="text-[15.6px] font-semibold text-white">
                           {agent.name}
                         </div>
-                        <div className="mt-0.5 text-[11px] leading-snug text-white/36">
+                        <div className="mt-0.5 text-[13.2px] leading-snug text-white/36">
                           {agent.description}
                         </div>
                       </div>
-                      <span className="shrink-0 rounded-md border border-white/10 bg-white/[0.07] px-2 py-1 text-[11px] font-medium text-white/36">
+                      <span className="shrink-0 rounded-md border border-white/10 bg-white/[0.07] px-2 py-1 text-[13.2px] font-medium text-white/36">
                         Copy
                       </span>
                     </div>
@@ -307,7 +307,7 @@ export function MarketingHome() {
 
         <section className="border-t border-white/[0.07] px-5 py-24 text-center md:px-10">
           <div className="mx-auto max-w-3xl">
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-300">
+            <p className="mb-4 text-[13.2px] font-semibold uppercase tracking-[0.18em] text-blue-300">
               Start before the idea is polished
             </p>
             <h2 className="text-4xl font-semibold leading-tight md:text-6xl">
@@ -354,9 +354,8 @@ export function MarketingHome() {
               <span className="text-white/24">Coming soon</span>
             </a>
           </div>
-          <span className="max-w-xl text-xs leading-5 text-white/28 md:text-right">
-            Every decision we make together will be quietly tracked, and you can
-            revisit any of them at any time.
+          <span className="max-w-none whitespace-nowrap text-xs leading-5 text-white/28 md:text-right">
+            Every decision we make together will be quietly tracked, and you can revisit any of them at any time.
           </span>
           <div className="flex items-center gap-4 text-xs text-white/32">
             <Link href="/privacy" className="transition hover:text-white/70">

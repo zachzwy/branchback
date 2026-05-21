@@ -54,17 +54,17 @@ export function DecisionCard({ decision, isSelected }: Props) {
             MADE_BY_DOT[decision.madeBy],
           )}
         />
-        <span className="truncate text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <span className="truncate text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
           {PHASE_TITLES[decision.phaseKey]}
         </span>
       </div>
       <div className="text-sm font-semibold leading-tight">
         {decision.title}
       </div>
-      <div className="flex flex-wrap items-center gap-1.5 text-[10px] text-muted-foreground">
+      <div className="flex flex-wrap items-center gap-1.5 text-[12px] text-muted-foreground">
         <Badge
           variant="outline"
-          className="rounded-full border-border/60 px-1.5 py-0 text-[9px]"
+          className="rounded-full border-border/60 px-1.5 py-0 text-[10.8px]"
         >
           {MADE_BY_LABEL[decision.madeBy]}
         </Badge>

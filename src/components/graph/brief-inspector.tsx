@@ -23,14 +23,14 @@ export function BriefInspector({
   return (
     <div className="flex h-full flex-col gap-5 overflow-y-auto px-6 py-6">
       <div className="flex flex-col gap-2">
-        <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
           <span className="inline-flex items-center gap-1">
             <BookOpen className="size-3" />
             Final brief
           </span>
           <Badge
             variant="outline"
-            className="rounded-full border-emerald-300 text-[10px] text-emerald-700 dark:border-emerald-900/60 dark:text-emerald-300"
+            className="rounded-full border-emerald-300 text-[12px] text-emerald-700 dark:border-emerald-900/60 dark:text-emerald-300"
           >
             v{version}
             {isLatest ? " · latest" : ""}
@@ -46,21 +46,21 @@ export function BriefInspector({
 
       <div className="grid grid-cols-2 gap-3 text-xs">
         <div className="flex flex-col gap-1 rounded-md border border-border/60 bg-background p-3">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
             Decisions
           </div>
           <div className="text-base font-semibold">
             {brief.decisionCount}{" "}
-            <span className="text-[11px] font-normal text-muted-foreground">
+            <span className="text-[13.2px] font-normal text-muted-foreground">
               · {brief.phasesCompleted}/{brief.phasesTotal} phases
             </span>
           </div>
         </div>
         <div className="flex flex-col gap-1 rounded-md border border-border/60 bg-background p-3">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
             Captured
           </div>
-          <div className="text-[12px] text-foreground">
+          <div className="text-[14.4px] text-foreground">
             {new Date(brief.createdAt).toLocaleString(undefined, {
               dateStyle: "medium",
               timeStyle: "short",
@@ -71,12 +71,12 @@ export function BriefInspector({
 
       {triggerDecision && (
         <div className="flex flex-col gap-2">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
             Anchored to
           </div>
-          <div className="rounded-md border border-border/60 bg-background p-3 text-[12px]">
+          <div className="rounded-md border border-border/60 bg-background p-3 text-[14.4px]">
             <div className="font-medium">{triggerDecision.title}</div>
-            <div className="mt-0.5 text-[11px] text-muted-foreground">
+            <div className="mt-0.5 text-[13.2px] text-muted-foreground">
               Cursor when this brief was generated
             </div>
           </div>
@@ -85,10 +85,10 @@ export function BriefInspector({
 
       {brief.openQuestions.length > 0 && (
         <div className="flex flex-col gap-2">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
             Open questions at capture
           </div>
-          <ul className="flex flex-col gap-1 text-[12px] text-muted-foreground">
+          <ul className="flex flex-col gap-1 text-[14.4px] text-muted-foreground">
             {brief.openQuestions.slice(0, 4).map((q, i) => (
               <li key={`${q.phaseKey}-${i}`} className="flex gap-2">
                 <span className="text-muted-foreground/60">•</span>

@@ -65,12 +65,12 @@ export function DecisionInspector({
   return (
     <div className="flex h-full flex-col gap-5 overflow-y-auto px-6 py-6">
       <div className="flex flex-col gap-2">
-        <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
           <span>{PHASE_TITLES[decision.phaseKey]}</span>
           <Badge
             variant="outline"
             className={cn(
-              "rounded-full border-blue-300 text-[10px] text-blue-700 dark:border-blue-900/60 dark:text-blue-300",
+              "rounded-full border-blue-300 text-[12px] text-blue-700 dark:border-blue-900/60 dark:text-blue-300",
               decision.madeBy === "user_direct" &&
                 "border-emerald-300 text-emerald-700 dark:border-emerald-900/60 dark:text-emerald-300",
               decision.madeBy === "agent_inferred" &&
@@ -90,7 +90,7 @@ export function DecisionInspector({
 
       <div className="grid grid-cols-2 gap-3 text-xs">
         <div className="flex flex-col gap-1 rounded-md border border-border/60 bg-background p-3">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
             Confidence
           </div>
           <div className="flex items-baseline gap-1.5">
@@ -103,10 +103,10 @@ export function DecisionInspector({
           </div>
         </div>
         <div className="flex flex-col gap-1 rounded-md border border-border/60 bg-background p-3">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
             Captured
           </div>
-          <div className="text-[12px] text-foreground">
+          <div className="text-[14.4px] text-foreground">
             {new Date(decision.createdAt).toLocaleString(undefined, {
               dateStyle: "medium",
               timeStyle: "short",
@@ -117,7 +117,7 @@ export function DecisionInspector({
 
       {decision.affectedAreas.length > 0 && (
         <div className="flex flex-col gap-2">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
             Affected areas
           </div>
           <div className="flex flex-wrap gap-1.5">
@@ -125,7 +125,7 @@ export function DecisionInspector({
               <Badge
                 key={a}
                 variant="secondary"
-                className="rounded-full text-[10px]"
+                className="rounded-full text-[12px]"
               >
                 {a}
               </Badge>
@@ -136,18 +136,18 @@ export function DecisionInspector({
 
       {decision.alternatives.length > 0 && (
         <div className="flex flex-col gap-2">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
             Alternatives considered
           </div>
           <div className="flex flex-col gap-2 rounded-md border border-dashed border-border/60 bg-muted/30 p-3">
             {decision.alternatives.map((alt) => (
               <div
                 key={alt.title}
-                className="flex flex-col gap-0.5 text-[12px] leading-snug"
+                className="flex flex-col gap-0.5 text-[14.4px] leading-snug"
               >
                 <div className="font-medium">
                   {alt.title}
-                  <span className="ml-2 text-[10px] text-muted-foreground">
+                  <span className="ml-2 text-[12px] text-muted-foreground">
                     {(alt.confidence * 100).toFixed(0)}%
                   </span>
                 </div>

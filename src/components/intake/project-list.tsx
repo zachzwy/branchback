@@ -11,7 +11,7 @@ export function ProjectList({ projects }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+      <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
         <FolderOpen className="size-3" />
         Recent Projects
       </div>
@@ -23,7 +23,7 @@ export function ProjectList({ projects }: Props) {
             className="flex flex-col gap-1 rounded-xl border border-border/60 bg-background p-4 transition hover:border-foreground/20 hover:bg-muted/30"
           >
             <div className="truncate text-sm font-medium">{p.name}</div>
-            <div className="text-[11px] text-muted-foreground">
+            <div className="text-[13.2px] text-muted-foreground">
               Updated {new Date(p.updatedAt).toLocaleDateString(undefined, { 
                 month: 'short', 
                 day: 'numeric',

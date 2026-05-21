@@ -44,12 +44,12 @@ export function ProductStoryPanel({
             const value = payload?.[f.key] ?? null;
             return (
               <div key={f.key} className="flex flex-col gap-1">
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                <div className="text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">
                   {f.label}
                 </div>
                 <div
                   className={cn(
-                    "text-[13px] leading-snug",
+                    "text-[15.6px] leading-snug",
                     value ? "text-foreground" : "italic text-muted-foreground/70",
                   )}
                 >
@@ -61,7 +61,7 @@ export function ProductStoryPanel({
         </div>
         {payload?.openQuestion && (
           <div className="mt-5 rounded-md border border-amber-200/60 bg-amber-50 p-3 text-xs leading-snug dark:border-amber-900/50 dark:bg-amber-950/40">
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-300">
+            <div className="text-[12px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-300">
               Open question
             </div>
             <div className="mt-1 text-foreground">

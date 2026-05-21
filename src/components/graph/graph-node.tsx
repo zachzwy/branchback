@@ -93,16 +93,16 @@ export function GraphNode({ data, selected }: NodeProps) {
     >
       <div
         className={cn(
-          "text-[9px] font-semibold uppercase tracking-wider",
+          "text-[10.8px] font-semibold uppercase tracking-wider",
           KIND_LABEL_COLOR[d.kind],
         )}
       >
         {KIND_LABEL[d.kind]}
       </div>
-      <div className="truncate text-[12px] font-semibold leading-tight">
+      <div className="truncate text-[14.4px] font-semibold leading-tight">
         {title}
       </div>
-      <div className="truncate text-[10px] text-muted-foreground">
+      <div className="truncate text-[12px] text-muted-foreground">
         {subtitle}
       </div>
       <Handle

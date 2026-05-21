@@ -39,7 +39,7 @@ export function HandoffPromptsSection({ prompts }: Props) {
         <h2 className="text-sm font-semibold tracking-tight">
           Handoff prompts for downstream agents
         </h2>
-        <span className="text-[11px] text-muted-foreground">
+        <span className="text-[13.2px] text-muted-foreground">
           {prompts.length} prompts · click a card to expand · copy to send
         </span>
       </div>
@@ -67,7 +67,7 @@ export function HandoffPromptsSection({ prompts }: Props) {
                     <div className="text-sm font-semibold tracking-tight">
                       {p.title}
                     </div>
-                    <div className="text-[12px] leading-relaxed text-muted-foreground">
+                    <div className="text-[14.4px] leading-relaxed text-muted-foreground">
                       {p.description}
                     </div>
                   </div>
@@ -83,7 +83,7 @@ export function HandoffPromptsSection({ prompts }: Props) {
                 </Button>
               </header>
               {isOpen && (
-                <pre className="border-t border-border/60 bg-muted/30 px-5 py-4 text-[12px] leading-relaxed text-foreground whitespace-pre-wrap font-mono">
+                <pre className="border-t border-border/60 bg-muted/30 px-5 py-4 text-[14.4px] leading-relaxed text-foreground whitespace-pre-wrap font-mono">
                   {p.prompt}
                 </pre>
               )}

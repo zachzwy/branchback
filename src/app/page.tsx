@@ -25,7 +25,7 @@ export default async function HomePage() {
 
       <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-stretch justify-center gap-12 px-6 py-10">
         <div className="flex flex-col items-center gap-3 text-center">
-          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300">
+          <div className="text-[12px] font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-300">
             Branchback
           </div>
           <h1 className="text-balance text-4xl font-semibold tracking-tight">
@@ -43,9 +43,8 @@ export default async function HomePage() {
         </div>
       </main>
 
-      <footer className="px-8 py-6 text-center text-[11px] text-muted-foreground">
-        Every decision we make together will be quietly tracked, and you can
-        revisit any of them at any time.
+      <footer className="whitespace-nowrap px-8 py-6 text-center text-[13.2px] text-muted-foreground">
+        Every decision we make together will be quietly tracked, and you can revisit any of them at any time.
       </footer>
     </div>
   );
